@@ -1,0 +1,29 @@
+<h1>Hello World</h1>
+<%# this page should show all tasks %>
+<%= @test %>
+<% @test %>
+
+<%= link_to 'Click here to create new task', new_task_path %>
+
+
+<table>
+    <thead>
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </thead>
+    <tbody>
+    <% @tasks.each do |task| %>
+        <tr>
+            <th><%= task.id %></th>
+            <th><%= link_to task.title, task_path(task)%>
+            <th><%= task.description %></th>
+            <th><%= link_to "edit - #{task.id}", edit_task_path(task) %></th>
+            <th><%= button_to 'destroy', task_path(task), method: :delete %></th>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<h2>Total Record: <%= @tasks.count %> </h2>

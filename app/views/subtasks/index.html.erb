@@ -1,0 +1,29 @@
+<h1>Hello World</h1>
+<%# this page should show all subtasks %>
+<%= @test %>
+<% @test %>
+
+<%= link_to 'Click here to create new subtask', new_task_subtask_path %>
+
+
+<table>
+    <thead>
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </thead>
+    <tbody>
+    <% @subtasks.each do |subtask| %>
+        <tr>
+            <th><%= subtask.id %></th>
+            <th><%= link_to subtask.title, subtask_path(subtask)%>
+            <th><%= subtask.description %></th>
+            <th><%= link_to "edit - #{subtask.id}", edit_subtask_path(subtask) %></th>
+            <th><%= button_to 'destroy', subtask_path(subtask), method: :delete %></th>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<h2>Total Record: <%= @subtasks.count %> </h2>
