@@ -1,9 +1,9 @@
-<h1>SHOW PAGE</h1>
-<h4>tHiS iS a ShOw PaGe</h4>
+<h1>Task Title: </h1>
 <h2><%= @task.title %></h2>
-<h3><%= @task.description %></h3>
+<h1>Task Description: </h1>
+<h2><%= @task.description %></h2>
 <p>
- <%= link_to 'Add subtask', new_task_subtasks_path(@task) %>
+ <%= link_to 'Add subtask', new_task_subtask_path(@task) %>
 </p>
 <h4><%= link_to 'index page', tasks_path%></h4>
 <h3><%=  %>
@@ -14,14 +14,17 @@
         <th>User Story</th>
         <th>Story Points</th>
         <th>Status</th>
+        <th>Edit?</th>
     </thead>
     <tbody>
-        <% @task.subtasks.each do |task|%>
+        <% @task.subtasks.each do |subtask|%>
             <tr>
-                <td><%= task.id%></td>
-                <td><%= task.user_story%></td>
-                <td><%= task.user_points%></td>
-                <td><%= task.status %></td>
+                <td><%= subtask.id%></td>
+                <td><%= subtask.user_story%></td>
+                <td><%= subtask.user_points%></td>
+                <td><%= subtask.status %></td>
+                <td><%= link_to "Edit Task no. #{subtask.id}", edit_task_subtask_path(@task, subtask) %></td>
+                <th><%= button_to 'Destroy?', task_subtask_path(@task, subtask), method: :delete %></th>
             </tr>
         <% end%>
     </tbody>

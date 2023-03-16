@@ -3,10 +3,6 @@ class SubtasksController < ApplicationController
         before_action :set_task
         before_action :set_subtask, only: [:show, :edit, :update, :destroy] #step 1
     
-        def index
-            @subtasks = Subtask.all
-            @test = "THIS IS A TEST"
-        end
         #everyth must be in the class
         def new
             @subtask = @task.subtasks.new
@@ -31,7 +27,7 @@ class SubtasksController < ApplicationController
     
         def update
             if @subtask.update(subtask_params)
-                redirect_to subtask_path(@subtask)
+                redirect_to task_path(@task)
             else
                 render :edit, status: unprocessable_entity
             end
@@ -40,7 +36,7 @@ class SubtasksController < ApplicationController
         
         def destroy
             if @subtask.destroy
-                redirect_to subtasks_path
+                redirect_to task_path(@task)
             else
                 "ded"
                 #usually you add an alert or popup
